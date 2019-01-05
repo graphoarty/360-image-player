@@ -1,0 +1,23 @@
+{
+  "name": "360-image-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graphoarty/360-image-player.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/graphoarty/360-image-player/issues"
+  },
+  "homepage": "https://github.com/graphoarty/360-image-player#readme",
+  "devDependencies": {
+    "electron": "^4.0.1"
+  }
+}

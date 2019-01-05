@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>360 Image Player</title>
+
+    <link rel="stylesheet" href="./css/materialize.min.css">
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/three.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .full-screen {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="webglviewer" class="full-screen"></div>
+
+    <script>
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('webglviewer').appendChild(renderer.domElement);
+
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            1,
+            100000000
+        )
+
+        camera.position.set(0, 0, 0);
+        camera.lookAt(10, 0, 0);
+
+        var loader = new THREE.TextureLoader();
+        loader.load(
+
+            'https://s3-us-west-2.amazonaws.com/farsight-v2/c162ce5ce8f37d9dfa343f33db722971/f8b358dd069d0509f64955fd88d7225c/5.jpg',
+
+            function (texture) {
+
+                var material = new THREE.MeshBasicMaterial({
+                    map: texture
+                });
+
+                var geometry = new THREE.SphereBufferGeometry(3, 32, 32);
+                geometry.scale(-1, 1, 1);
+                var sphere = new THREE.Mesh(geometry, material);
+                sphere.position.set(0, 0, 0);
+                scene.add(sphere);
+
+                renderer.render(scene, camera);
+
+            }
+
+        );
+
+        renderer.render(scene, camera);
+
+    </script>
+
+</body>
+
+</html>
